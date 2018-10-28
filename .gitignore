@@ -1,0 +1,10 @@
+.idea/
+.DS_Store/
+.git/
+node_modules/
+umd/
+package-lock.json
+stat.json
+es/
+cj/
+.npmrc
