@@ -1,6 +1,6 @@
 {
   "name": "react-glue-redux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "relate react to glue-redux,like react-redux",
   "main": "./es/index.js",
   "types": "./index.d.ts",
