@@ -1,4 +1,4 @@
-# react-glue-redux | [en](https://github.com/ZhouYK/react-glue-redux/blob/master/en)
+# react-glux | [en](https://github.com/ZhouYK/react-glue-redux/blob/master/en)
 
 链接react组件与redux store
 > 基于glue-redux，根据model引用自动更新react组件，并传入this.props.model作为组件数据源

@@ -1,5 +1,5 @@
 {
-  "name": "react-glue-redux",
+  "name": "react-glux",
   "version": "1.0.0",
   "description": "relate react to glue-redux,like react-redux",
   "main": "./es/index.js",
