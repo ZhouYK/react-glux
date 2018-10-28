@@ -5,11 +5,11 @@ import model from '../glue/model';
 
 class UserList extends Component {
   static propTypes = {
-    model: pt.object.isRequired,
+    manyPeople: pt.object.isRequired,
   }
 
   renderUsers = () => {
-    const { model: { users } } = this.props;
+    const { manyPeople: { users } } = this.props;
     if (Object.is(users.length, 0)) {
       return (
         <section>
@@ -56,4 +56,4 @@ class UserList extends Component {
   }
 }
 
-export default connect(model)(UserList);
+export default connect({ manyPeople: model })(UserList);

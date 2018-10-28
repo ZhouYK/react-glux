@@ -7,19 +7,16 @@ const reglux = store => (referToState) => {
       fn();
     });
   });
-  return modelSchema => WrappedComponent => class Connect extends Component {
+  return modelSchemas => WrappedComponent => class Connect extends Component {
     constructor(props) {
       super(props);
-      this.state = {
-        model: referToState(modelSchema),
-      };
+      this.schemaKeys = Object.keys(modelSchemas);
+      this.state = this.genStateBySchemas();
       this.callback = () => {
-        const { model } = this.state;
-        const modelNext = referToState(modelSchema);
-        if (!Object.is(model, modelNext)) {
-          this.setState({
-            model: modelNext,
-          });
+        const curModel = this.state;
+        const modelNext = this.genStateBySchemas();
+        if (!this.compareCurAndNext(curModel, modelNext)) {
+          this.setState(modelNext);
         }
       };
     }
@@ -33,9 +30,20 @@ const reglux = store => (referToState) => {
       callbackQueue.splice(index, 1);
     }
 
+    compareCurAndNext = (curModel, nextModel) => {
+      const arr = this.schemaKeys.filter(key => !Object.is(curModel[key], nextModel[key]));
+      return arr.length === 0;
+    }
+
+    genStateBySchemas = () => this.schemaKeys.reduce((pre, cur) => {
+      /* eslint no-param-reassign:1 */
+      pre[cur] = referToState(modelSchemas[cur]);
+      return pre;
+    }, {})
+
+
     render() {
-      const { model } = this.state;
-      return <WrappedComponent {...this.props} model={model} />;
+      return <WrappedComponent {...this.props} {...this.state} />;
     }
   };
 };
