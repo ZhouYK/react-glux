@@ -1,11 +1,11 @@
-# react-glux | [en](https://github.com/ZhouYK/react-glue-redux/blob/master/en)
+# react-glux | [en](https://github.com/ZhouYK/react-glux/blob/master/en)
 
 链接react组件与redux store
 > 基于glue-redux，根据model引用自动更新react组件，并传入this.props.model作为组件数据源
 
 ## 查看示例
 ```javascript
-git clone https://github.com/ZhouYK/react-glue-redux.git
+git clone https://github.com/ZhouYK/react-glux.git
 npm install
 npm start
 
@@ -13,7 +13,7 @@ npm start
 ```
 
 
-## destruct(store)(model) | [代码](https://github.com/ZhouYK/react-glue-redux/blob/master/example/configStore.js)
+## destruct(store)(model) | [代码](https://github.com/ZhouYK/react-glux/blob/master/example/configStore.js)
 
 ### 入参
 - store(必传)
@@ -27,7 +27,7 @@ npm start
   
    - reducers
       > redux中的reducer函数的对象集合，可直接用户combineReducers
-   - connect [代码](https://github.com/ZhouYK/react-glue-redux/blob/master/example/App/UserList.jsx)
+   - connect [代码](https://github.com/ZhouYK/react-glux/blob/master/example/App/UserList.jsx)
       > 链接store与组件，帮助组件实时获取数据，向组件注入model属性
 
 
@@ -35,4 +35,4 @@ npm start
 [ZhouYK](https://github.com/ZhouYK)
 
 ## License
-[MIT licensed](https://github.com/ZhouYK/react-glue-redux/blob/master/LICENSE) 
+[MIT licensed](https://github.com/ZhouYK/react-glux/blob/master/LICENSE) 
