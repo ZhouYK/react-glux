@@ -1,7 +1,7 @@
 # react-glux | [中文](https://github.com/ZhouYK/react-glux)
 
 link the react component to the redux store
-> based on gly-redux, the react component is automatically updated based on the model reference and passed into the this.props. Model as the component data source
+> based on gly-redux, the react component is automatically updated based on the model reference and passed into the this.props as the component data source
 
 ## see the sample
 ```javascript
