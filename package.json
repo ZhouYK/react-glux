@@ -11,10 +11,9 @@
     "build:cj": "cross-env BABEL_ENV=cj babel src --out-dir cj",
     "build": "webpack --config webpack/webpack.config.prod.js && npm run build:es && npm run build:cj"
   },
-  "dependencies": {
-    "glue-redux": "~3.2.0"
-  },
+
   "devDependencies": {
+    "glue-redux": "~3.2.0",
     "@types/react": "~16.4.18",
     "babel-cli": "~6.23.0",
     "babel-eslint": "~8.2.5",
@@ -61,7 +60,7 @@
   },
   "peerDependencies": {
     "react": ">= 1.0.0",
-    "glue-redux": "3.x"
+    "glue-redux": ">= 3.2.x"
   },
   "files": [
     "umd",
@@ -74,7 +73,7 @@
   ],
   "keywords": [
     "redux",
-    "redux-glue",
+    "glue-redux",
     "action",
     "reducer"
   ],
