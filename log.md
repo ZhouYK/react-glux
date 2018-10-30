@@ -2,3 +2,7 @@
 1.0.0
 - initial version
 
+1.1.0
+- connect方法重构;
+> 第一个入参类型必须是plain object，未找到的节点值为undefined。
+

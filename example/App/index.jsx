@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { service } from '../glue';
+import service from './service';
 import List from './UserList';
 import './style.less';
 

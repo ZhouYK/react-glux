@@ -11,7 +11,9 @@
     "build:cj": "cross-env BABEL_ENV=cj babel src --out-dir cj",
     "build": "webpack --config webpack/webpack.config.prod.js && npm run build:es && npm run build:cj"
   },
-  "dependencies": {},
+  "dependencies": {
+    "glue-redux": "~3.2.0"
+  },
   "devDependencies": {
     "@types/react": "~16.4.18",
     "babel-cli": "~6.23.0",
@@ -35,7 +37,6 @@
     "eslint-plugin-import": "~2.13.0",
     "eslint-plugin-jsx-a11y": "~6.0.3",
     "eslint-plugin-react": "~7.10.0",
-    "glue-redux": "~3.0.0",
     "html-webpack-plugin": "~3.2.0",
     "less": "~3.0.4",
     "less-loader": "~4.1.0",
@@ -59,7 +60,7 @@
     "webpack-dev-server": "~3.1.4"
   },
   "peerDependencies": {
-    "react": ">= 15.0.0",
+    "react": ">= 1.0.0",
     "glue-redux": "3.x"
   },
   "files": [

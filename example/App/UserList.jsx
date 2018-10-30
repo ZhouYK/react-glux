@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
 import pt from 'prop-types';
 import { connect } from '../configStore';
-import model from '../glue/model';
+import bookModel from '../bookModel';
+import model from './model';
+
+let n = 0;
 
 class UserList extends Component {
   static propTypes = {
-    manyPeople: pt.object.isRequired,
+    users: pt.array.isRequired,
+  }
+
+  constructor(props) {
+    super(props);
+    setInterval(() => {
+      n += 1;
+      bookModel.book(`Book-${n}`);
+    }, 2000);
   }
 
   renderUsers = () => {
-    const { manyPeople: { users } } = this.props;
+    const { users } = this.props;
     if (Object.is(users.length, 0)) {
       return (
         <section>
@@ -48,6 +59,7 @@ class UserList extends Component {
   }
 
   render() {
+    console.log(`render ${n}`);
     return (
       <section>
         { this.renderUsers() }
@@ -56,4 +68,4 @@ class UserList extends Component {
   }
 }
 
-export default connect({ manyPeople: model })(UserList);
+export default connect(model)(UserList);
