@@ -1,12 +1,13 @@
-import {Component, ReactElement} from "react";
+import {ComponentClass, ReactElement} from "react";
 
 interface Glue {
   [index:string]: any;
 }
 
 interface DestructResult {
-  reducers: {[index:string]: any},
-  connect: (model: Glue) => (component: Component) => ReactElement<any>,
+  reducers: Reducer<void & {}, Action<any>>,
+  connect: (model: Glue) => (component: ComponentClass) => ReactElement<any>,
+  referToState: (model: Glue) => any,
 }
 
 interface Dispatch {

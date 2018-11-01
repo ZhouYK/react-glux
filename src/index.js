@@ -7,6 +7,7 @@ export const destruct = store => (model) => {
   return {
     reducers,
     connect,
+    referToState,
   };
 };
 
