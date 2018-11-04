@@ -6,3 +6,5 @@
 - connect方法重构;
 > 第一个入参类型必须是plain object，未找到的节点值为undefined。
 
+1.1.1
+- connect方法中，组件一进入就注册监听store变化

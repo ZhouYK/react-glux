@@ -16,14 +16,6 @@ const reglux = store => ({ referToState, hasModel }) => {
       this.cacheState = null;
       this.shouldComponentUpdateFlag = false;
       this.state = this.genStateBySchemas();
-      this.callback = () => {
-        this.shouldComponentUpdateFlag = false;
-        const modelNext = this.genStateBySchemas();
-        this.setState(modelNext);
-      };
-    }
-
-    componentDidMount() {
       callbackQueue.push(this.callback);
     }
 
@@ -35,6 +27,12 @@ const reglux = store => ({ referToState, hasModel }) => {
       const index = callbackQueue.indexOf(this.callback);
       callbackQueue.splice(index, 1);
     }
+
+    callback = () => {
+      this.shouldComponentUpdateFlag = false;
+      const modelNext = this.genStateBySchemas();
+      this.setState(modelNext);
+    };
 
     // todo 应该有未知节点提示
     traverse = (node) => {
