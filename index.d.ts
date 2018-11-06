@@ -1,13 +1,13 @@
-import {Component, ComponentClass } from "react";
-import { Reducer } from "redux";
+import { ComponentType, PureComponent, Props } from 'react';
+import { ReducersMapObject } from "redux";
 
 interface Glue {
   [index:string]: any;
 }
 
 interface DestructResult {
-  reducers: Reducer<void & {}>,
-  connect: (model: Glue) => (component: Component | ComponentClass) => ComponentClass,
+  reducers: ReducersMapObject,
+  connect: (model: Glue) => (component: ComponentType<any> | PureComponent<any, any, any>) => ComponentType,
   referToState: (model: Glue) => any,
 }
 
