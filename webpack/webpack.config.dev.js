@@ -18,6 +18,11 @@ const config = {
   }),
   module: {
     rules: [{
+      enforce: 'pre',
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: ['source-map-loader'],
+    }, {
       test: /\.less$/,
       use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
     }, {

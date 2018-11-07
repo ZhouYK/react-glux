@@ -1,4 +1,4 @@
-import { ComponentType, PureComponent, Props } from 'react';
+import { ComponentType, PureComponent } from 'react';
 import { ReducersMapObject } from "redux";
 
 interface Glue {
