@@ -52,7 +52,7 @@ npm start
 
 ```
 ### connect(model)(Component)
-* model {:&.rollIn}
+* model
 > 必须是对象，从state拿到的数据将以该对象的展开结构注入组件
 
 * Component
