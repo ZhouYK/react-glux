@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import pt from 'prop-types';
-import { connect } from '../configStore';
+import { connect } from '../store';
 import bookModel from '../bookModel';
 import model from './model';
 
