@@ -1,7 +1,7 @@
 # react-glux
 
 glue-redux的连接库
-> 基于glue-redux的react链接库
+> 基于glue-redux的react连接库
 
 ## 查看示例
 ```bash
