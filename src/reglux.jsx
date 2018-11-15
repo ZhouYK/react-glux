@@ -19,8 +19,14 @@ const reglux = store => ({ referToState, hasModel }) => {
       callbackQueue.push(this.callback);
     }
 
-    shouldComponentUpdate() {
+    shouldComponentUpdate(nextProps) {
+      this.shallowCompareProps(nextProps);
       return this.shouldComponentUpdateFlag;
+    }
+
+
+    componentDidUpdate() {
+      this.shouldComponentUpdateFlag = false;
     }
 
     componentWillUnmount() {
@@ -29,7 +35,6 @@ const reglux = store => ({ referToState, hasModel }) => {
     }
 
     callback = () => {
-      this.shouldComponentUpdateFlag = false;
       const modelNext = this.genStateBySchemas();
       this.setState(modelNext);
     };
@@ -67,6 +72,22 @@ const reglux = store => ({ referToState, hasModel }) => {
       if (!Object.is(getType(modelSchemas), '[object Object]')) {
         console.trace();
         throw new Error('the first param of "connect" must be a plain object');
+      }
+    }
+
+    shallowCompareProps(nextProps) {
+      const preKeys = Object.keys(this.props);
+      const nextKeys = Object.keys(nextProps);
+      if (preKeys.length !== nextKeys.length) {
+        this.shouldComponentUpdateFlag = true;
+        return;
+      }
+      for (let i = 0; i < preKeys.length; i += 1) {
+        const key = preKeys[i];
+        if (!Object.is(this.props[key], nextProps[key])) {
+          this.shouldComponentUpdateFlag = true;
+          break;
+        }
       }
     }
 

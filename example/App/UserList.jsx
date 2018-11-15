@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import pt from 'prop-types';
 import { connect } from '../store';
-import bookModel from '../bookModel';
+// import bookModel from '../bookModel';
 import model from './model';
 
-let n = 0;
+const n = 0;
 
 class UserList extends Component {
   static propTypes = {
@@ -13,10 +13,11 @@ class UserList extends Component {
 
   constructor(props) {
     super(props);
-    setInterval(() => {
-      n += 1;
-      bookModel.book(`Book-${n}`);
-    }, 2000);
+    this.state = {};
+    // setInterval(() => {
+    //  n += 1;
+    //  bookModel.book(`Book-${n}`);
+    // }, 2000);
   }
 
   renderUsers = () => {

@@ -3,6 +3,7 @@ import service from './service';
 import List from './UserList';
 import './style.less';
 
+let n = 0;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,12 @@ class App extends Component {
       profession: '',
       pet: '',
     };
+    setInterval(() => {
+      n += 1;
+      this.setState({
+        count: n,
+      });
+    }, 1000);
   }
 
   handleOnChange = key => (e) => {
@@ -42,7 +49,10 @@ class App extends Component {
   }
 
   render() {
-    const { name, profession, pet } = this.state;
+    const {
+      name, profession, pet, count,
+    } = this.state;
+    console.log(count);
     return (
       <div className="app">
         <section>
@@ -70,7 +80,7 @@ class App extends Component {
             </button>
           </div>
         </section>
-        <List />
+        <List count={count} />
       </div>
     );
   }
