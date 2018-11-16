@@ -28,7 +28,7 @@ npm start
   > 包含reducers和connect属性的对象
   
    - reducers
-      > redux中的reducer函数的对象集合，可直接用户combineReducers
+      > redux中的reducer函数的对象集合，可直接用于combineReducers
    - connect [代码](https://github.com/ZhouYK/react-glux/blob/master/example/App/UserList.jsx)
       > HOC---链接store与组件，帮助组件实时获取数据，向组件注入数据
 
