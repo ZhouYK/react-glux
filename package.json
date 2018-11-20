@@ -2,7 +2,7 @@
   "name": "react-glux",
   "version": "1.2.0",
   "description": "relate react to glue-redux,like react-redux",
-  "main": "./es/index.js",
+  "main": "./cj/index.js",
   "types": "./index.d.ts",
   "scripts": {
     "test": "jest",
@@ -28,7 +28,7 @@
       "node_modules"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(glue-redux)/)"
+      "node_modules"
     ],
     "globals": {
       "BABEL_ENV": "test"
@@ -60,7 +60,7 @@
     "eslint-plugin-import": "~2.13.0",
     "eslint-plugin-jsx-a11y": "~6.0.3",
     "eslint-plugin-react": "~7.10.0",
-    "glue-redux": "~3.2.0",
+    "glue-redux": "~3.3.0-0",
     "html-webpack-plugin": "~3.2.0",
     "jest": "~23.6.0",
     "less": "~3.0.4",
@@ -87,7 +87,7 @@
   },
   "peerDependencies": {
     "react": ">= 1.0.0",
-    "glue-redux": ">= 3.2.x",
+    "glue-redux": ">= 3.3.x",
     "@types/react": ">= 15.x"
   },
   "files": [
