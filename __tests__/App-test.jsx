@@ -1,10 +1,9 @@
-/* eslint-disable */
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from '../example/App';
-import UserList from '../example/App/UserList'
-import bookModel from '../example/bookModel'
-import service from '../example/App/service'
+import UserList from '../example/App/UserList';
+import bookModel from '../example/bookModel';
+import service from '../example/App/service';
 
 // 测试原则基于组件的shouldComponentUpdate方法
 const ifModelNoChangeNoRerender = 'bookModel update, UserList should not update';
@@ -33,7 +32,7 @@ test(ifModelChangeDoRerender, () => {
 const ifPropsNoChangeNoRerender = 'App should rerender but UserList';
 test(ifPropsNoChangeNoRerender, () => {
   const testRenderer = renderer.create(
-    <App test={ifPropsNoChangeNoRerender} />
+    <App test={ifPropsNoChangeNoRerender} />,
   );
   // update app
   testRenderer.update(<App test={ifPropsNoChangeNoRerender} />);
@@ -43,8 +42,8 @@ test(ifPropsNoChangeNoRerender, () => {
 const ifPropsChangeDoRerender = 'App and UserList both should rerender';
 test(ifPropsChangeDoRerender, () => {
   const testRenderer = renderer.create(
-    <App/>
+    <App />,
   );
   testRenderer.update(<App test={ifPropsChangeDoRerender} />);
   testRenderer.unmount();
-})
+});
