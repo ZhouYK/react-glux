@@ -8,3 +8,12 @@
 
 1.1.1
 - connect方法中，组件一进入就注册监听store变化
+
+1.1.2
+- connect中，将注册监听放在constructor中
+
+1.1.3
+- ts声明文件更新
+
+1.1.4
+- connect中，除了监听的model发生改变会触发更新外，外部传入的props发生改变，也会触发更新

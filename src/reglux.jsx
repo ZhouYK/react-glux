@@ -13,8 +13,9 @@ const reglux = store => ({ referToState, hasModel }) => {
     constructor(props) {
       super(props);
       this.confirmModelSchemasIsObject();
-      this.cacheState = null;
       this.shouldComponentUpdateFlag = false;
+      this.memoizedGlobalState = store.getState();
+      this.cacheStateMap = null;
       this.state = this.genStateBySchemas();
       callbackQueue.push(this.callback);
     }
@@ -35,24 +36,30 @@ const reglux = store => ({ referToState, hasModel }) => {
     }
 
     callback = () => {
+      const currentState = store.getState();
+      if (Object.is(this.memoizedGlobalState, currentState)) {
+        this.shouldComponentUpdateFlag = false;
+        return;
+      }
+      this.memoizedGlobalState = currentState;
       const modelNext = this.genStateBySchemas();
       this.setState(modelNext);
     };
 
     // todo 应该有未知节点提示
     traverse = (node) => {
-      if (Object.is(this.cacheState, null)) {
-        this.cacheState = new Map();
+      if (Object.is(this.cacheStateMap, null)) {
+        this.cacheStateMap = new Map();
       }
       if (hasModel(node)) {
         const result = referToState(node);
-        if (!this.shouldComponentUpdateFlag && this.cacheState.has(node)) {
-          const cacheResult = this.cacheState.get(node);
+        if (!this.shouldComponentUpdateFlag && this.cacheStateMap.has(node)) {
+          const cacheResult = this.cacheStateMap.get(node);
           if (!Object.is(cacheResult, result)) {
             this.shouldComponentUpdateFlag = true;
           }
         }
-        this.cacheState.set(node, result);
+        this.cacheStateMap.set(node, result);
         return result;
       }
       if (getType(node) === '[object Object]') {

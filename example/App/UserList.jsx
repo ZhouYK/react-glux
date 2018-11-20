@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import pt from 'prop-types';
 import { connect } from '../store';
-// import bookModel from '../bookModel';
 import model from './model';
-
-const n = 0;
 
 class UserList extends Component {
   static propTypes = {
     users: pt.array.isRequired,
+    test: pt.string,
+  }
+
+  static defaultProps = {
+    test: 'userlist component',
   }
 
   constructor(props) {
     super(props);
     this.state = {};
-    // setInterval(() => {
-    //  n += 1;
-    //  bookModel.book(`Book-${n}`);
-    // }, 2000);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    console.log(nextProps.test);
+    return true;
   }
 
   renderUsers = () => {
@@ -60,9 +63,11 @@ class UserList extends Component {
   }
 
   render() {
-    console.log(`render ${n}`);
     return (
       <section>
+        <span>
+          { this.props.test }
+        </span>
         { this.renderUsers() }
       </section>
     );

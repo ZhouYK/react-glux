@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import service from './service';
 import List from './UserList';
 import './style.less';
 
-let n = 0;
 class App extends Component {
+  static propTypes = {
+    test: PropTypes.string,
+  }
+
+  static defaultProps = {
+    test: 'app component',
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -12,12 +20,11 @@ class App extends Component {
       profession: '',
       pet: '',
     };
-    setInterval(() => {
-      n += 1;
-      this.setState({
-        count: n,
-      });
-    }, 1000);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    console.log(nextProps.test);
+    return true;
   }
 
   handleOnChange = key => (e) => {
@@ -50,11 +57,13 @@ class App extends Component {
 
   render() {
     const {
-      name, profession, pet, count,
+      name, profession, pet,
     } = this.state;
-    console.log(count);
     return (
       <div className="app">
+        <span>
+          { this.props.test }
+        </span>
         <section>
           <div className="row">
             <label htmlFor="name">
@@ -80,7 +89,7 @@ class App extends Component {
             </button>
           </div>
         </section>
-        <List count={count} />
+        <List test={this.props.test} />
       </div>
     );
   }
