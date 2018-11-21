@@ -1,8 +1,8 @@
 import {
   createStore, combineReducers,
 } from 'redux';
-import app from './App/model';
-import book from './bookModel';
+import app from './models/app/model';
+import book from './models/book/model';
 import DevTool from './DevTool';
 import { destruct } from '../src/index';
 

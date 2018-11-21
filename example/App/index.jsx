@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import service from './service';
-import List from './UserList';
+import service from '../models/app/service';
+import List from './UserList/index';
 import './style.less';
 
 class App extends Component {

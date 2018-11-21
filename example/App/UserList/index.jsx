@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import pt from 'prop-types';
-import { connect } from '../store';
-import model from './model';
+import { connect } from '../../store';
+import model from '../../models/app/model';
 
-class UserList extends Component {
+class Index extends Component {
   static propTypes = {
     users: pt.array.isRequired,
     test: pt.string,
@@ -74,4 +74,4 @@ class UserList extends Component {
   }
 }
 
-export default connect(model)(UserList);
+export default connect(model)(Index);

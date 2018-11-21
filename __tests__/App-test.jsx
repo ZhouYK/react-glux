@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from '../example/App';
-import UserList from '../example/App/UserList';
-import bookModel from '../example/bookModel';
-import service from '../example/App/service';
+import UserList from '../example/App/UserList/index';
+import bookModel from '../example/models/book/model';
+import service from '../example/models/app/service';
 
 // 测试原则基于组件的shouldComponentUpdate方法
 const ifModelNoChangeNoRerender = 'bookModel update, UserList should not update';
