@@ -54,6 +54,7 @@ module.exports = {
     }],
     "react/destructuring-assignment": "warn",
     "global-require": 0,
+    "react/sort-comp": 0
   },
   "extends": "airbnb",
 }

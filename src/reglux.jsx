@@ -15,16 +15,14 @@ const reglux = store => ({ referToState, hasModel }) => {
       this.confirmModelSchemasIsObject();
       this.shouldComponentUpdateFlag = false;
       this.memoizedGlobalState = store.getState();
-      this.cacheStateMap = null;
-      this.state = this.genStateBySchemas();
+      this.cacheStateMap = new Map();
+      this.state = this.getInitState();
       callbackQueue.push(this.callback);
     }
 
     shouldComponentUpdate(nextProps) {
-      this.shallowCompareProps(nextProps);
-      return this.shouldComponentUpdateFlag;
+      return this.shouldComponentUpdateFlag || this.shallowCompareProps(nextProps);
     }
-
 
     componentDidUpdate() {
       this.shouldComponentUpdateFlag = false;
@@ -38,42 +36,50 @@ const reglux = store => ({ referToState, hasModel }) => {
     callback = () => {
       const currentState = store.getState();
       if (Object.is(this.memoizedGlobalState, currentState)) {
-        this.shouldComponentUpdateFlag = false;
         return;
       }
       this.memoizedGlobalState = currentState;
-      const modelNext = this.genStateBySchemas();
-      this.setState(modelNext);
+      const modelNext = this.isThereAnyDifference();
+      if (this.shouldComponentUpdateFlag) {
+        this.setState(modelNext);
+      }
     };
 
-    // todo 应该有未知节点提示
-    traverse = (node) => {
-      if (Object.is(this.cacheStateMap, null)) {
-        this.cacheStateMap = new Map();
-      }
-      if (hasModel(node)) {
-        const result = referToState(node);
-        if (!this.shouldComponentUpdateFlag && this.cacheStateMap.has(node)) {
-          const cacheResult = this.cacheStateMap.get(node);
-          if (!Object.is(cacheResult, result)) {
-            this.shouldComponentUpdateFlag = true;
-          }
+    traverse = (handler) => {
+      const traverse = (node) => {
+        if (hasModel(node)) {
+          return handler(node);
         }
-        this.cacheStateMap.set(node, result);
-        return result;
-      }
-      if (getType(node) === '[object Object]') {
-        const result = {};
-        Object.keys(node).forEach((key) => {
-          result[key] = this.traverse(node[key]);
-        });
-        return result;
-      }
-      // 未知节点的值会返回undefined
-      return undefined;
+        if (getType(node) === '[object Object]') {
+          const result = {};
+          Object.keys(node).forEach((key) => {
+            result[key] = traverse(node[key]);
+          });
+          return result;
+        }
+        // 未知节点的值会返回undefined
+        console.warn(`the node "${node}" in schema has not be tracked in the store`);
+        return undefined;
+      };
+      return traverse;
     }
 
-    genStateBySchemas = () => this.traverse(modelSchemas);
+    isThereAnyDifference = () => this.traverse((node) => {
+      const result = referToState(node);
+      const cacheResult = this.cacheStateMap.get(node);
+      if (!Object.is(cacheResult, result)) {
+        this.shouldComponentUpdateFlag = true;
+        // 将不同的写入
+        this.cacheStateMap.set(node, result);
+      }
+      return result;
+    })(modelSchemas)
+
+    getInitState = () => this.traverse((node) => {
+      const result = referToState(node);
+      this.cacheStateMap.set(node, result);
+      return result;
+    })(modelSchemas);
 
     confirmModelSchemasIsObject = () => {
       if (!Object.is(getType(modelSchemas), '[object Object]')) {
@@ -86,16 +92,15 @@ const reglux = store => ({ referToState, hasModel }) => {
       const preKeys = Object.keys(this.props);
       const nextKeys = Object.keys(nextProps);
       if (preKeys.length !== nextKeys.length) {
-        this.shouldComponentUpdateFlag = true;
-        return;
+        return true;
       }
       for (let i = 0; i < preKeys.length; i += 1) {
         const key = preKeys[i];
         if (!Object.is(this.props[key], nextProps[key])) {
-          this.shouldComponentUpdateFlag = true;
-          break;
+          return true;
         }
       }
+      return false;
     }
 
     render() {

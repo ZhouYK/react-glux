@@ -23,3 +23,6 @@
 
 1.3.0
 - 调整package.json的main路径由指向es文件变为cjs文件
+
+1.3.1
+- 调优connect内部遍历算法
