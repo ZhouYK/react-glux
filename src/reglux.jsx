@@ -57,8 +57,10 @@ const reglux = store => ({ referToState, hasModel }) => {
           });
           return result;
         }
-        // 未知节点的值会返回undefined
-        console.warn(`the node "${node}" in schema has not be tracked in the store`);
+        if (process.env.NODE_ENV === 'development') {
+          // 未知节点的值会返回undefined
+          console.warn(`the node "${node}" in schema has not be tracked in the store`);
+        }
         return undefined;
       };
       return traverse;

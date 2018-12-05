@@ -74,4 +74,4 @@ class Index extends Component {
   }
 }
 
-export default connect(model)(Index);
+export default connect({ ...model, test: 1 })(Index);
