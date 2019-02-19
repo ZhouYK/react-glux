@@ -3,6 +3,12 @@
 glue-redux的连接库
 > 基于glue-redux的react连接库
 
+## 安装
+```bash
+npm i react-glue-redux -P
+# 包原名为react-glux，1.3.1版本后react-glux改名为react-glue-redux
+```
+
 ## 查看示例
 ```bash
 git clone https://github.com/ZhouYK/react-glux.git
