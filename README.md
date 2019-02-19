@@ -1,4 +1,4 @@
-# react-glux
+# react-glue-redux
 
 glue-redux的连接库
 > 基于glue-redux的react连接库
@@ -39,7 +39,7 @@ npm start
     createStore, combineReducers,
   } from 'redux';
   import app from './model';
-  import { destruct } from 'react-glux';
+  import { destruct } from 'react-glue-redux';
   
   const store = createStore(() => {});
   const { reducers, connect } = destruct(store)({ app });
