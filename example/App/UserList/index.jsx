@@ -19,7 +19,6 @@ class Index extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log(nextProps.test);
     return true;
   }
 
@@ -73,5 +72,5 @@ class Index extends Component {
     );
   }
 }
-
+export { Index };
 export default connect({ ...model, test: 1 })(Index);

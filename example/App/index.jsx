@@ -22,8 +22,7 @@ class App extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log(nextProps.test);
+  shouldComponentUpdate() {
     return true;
   }
 
