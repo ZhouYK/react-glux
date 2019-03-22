@@ -70,7 +70,7 @@ npm start
 
 ```js
  // model.js
- import { gluer } from 'glue-redux';
+ import { gluer } from 'react-glue-redux';
  
  const users = gluer((data, state) => [data, ...state], []);
  
