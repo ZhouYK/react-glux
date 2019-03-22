@@ -1,4 +1,4 @@
-import { destruct as dst } from 'glue-redux';
+import { destruct as dst, gluer } from 'glue-redux';
 import reglux from './reglux';
 
 export const destruct = store => (model) => {
@@ -11,4 +11,5 @@ export const destruct = store => (model) => {
   };
 };
 
+export { gluer };
 export default destruct;

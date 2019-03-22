@@ -1,5 +1,6 @@
 import { ComponentType, PureComponent } from 'react';
 import { ReducersMapObject } from "redux";
+import { gluer } from "glue-redux";
 
 interface Glue {
   [index:string]: any;
@@ -32,3 +33,5 @@ interface Destruct {
 }
 
 export const destruct:Destruct;
+
+export { gluer };
