@@ -21,22 +21,22 @@ npm start
 ## Api
 * destruct
 
-## destruct(store)(model) | [代码](https://github.com/ZhouYK/react-glux/blob/master/example/configStore.js)
+## destruct(store)(models) | [代码](https://github.com/ZhouYK/react-glux/blob/master/example/configStore.js)
 
 ### 入参
-- store(必传)
-  > redux的生成的store对象
-- model(必传)
-  > 自定义的数据对象，必须是plain object
+
+| 参数名 | 类型 | 用途 | 示例
+| :----: | :----: | :----: | :----:
+| store | object(redux的store) | 耦合数据模型 | -
+| models | object | 数据模型 | { [index: string]: GluerReturn or any }
   
 ### 返回
 - { reducers, connect }
-  > 包含reducers和connect属性的对象
-  
-   - reducers
-      > redux中的reducer函数的对象集合，可直接用于combineReducers
-   - connect [代码](https://github.com/ZhouYK/react-glux/blob/master/example/App/UserList.jsx)
-      > HOC---链接store与组件，帮助组件实时获取数据，向组件注入数据
+
+ | 属性名 | 类型 | 用途 | 示例 
+ | :----: | :----: | :----: | :----:
+ | reducers | object | reducer组成的对象 | { name: (state, action) => {}, ... } 
+ | connect | function | HOC | connect(model)(Component)
 
 ### 如何使用
 ```js
@@ -57,13 +57,6 @@ npm start
   };
 
 ```
-### connect(model)(Component)
-* model
-> 必须是对象，从state拿到的数据将以该对象的展开结构注入组件
-
-* Component
-> react组件
-
 ### 如何使用
 
 * 先定义数据模型
