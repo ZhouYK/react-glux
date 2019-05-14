@@ -18,7 +18,7 @@ class Index extends Component {
     this.state = {};
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate() {
     return true;
   }
 
